@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajout de la meta viewport pour la réactivité -->
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-        {% block stylesheets %}
-        {% endblock %}
 
-        {% block javascripts %}
+        <!-- Inclusion des fichiers CSS -->
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
+        <!-- Navbar -->
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ path('app_home') }}">Home</a></li>
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <!-- Liens pour les utilisateurs authentifiés -->
+                    <li><a href="{{ path('app_task_index') }}">Tasks</a></li>
+                    <li><a href="{{ path('app_logout') }}">Logout</a></li>
+                {% else %}
+                    <!-- Liens pour les utilisateurs non authentifiés -->
+                    <li><a href="{{ path('app_login') }}">Login</a></li>
+                    <li><a href="{{ path('app_registration') }}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        
+        {% block stylesheets %}
+        <!-- Les feuilles de style supplémentaires peuvent être incluses ici -->
         {% endblock %}
     </head>
     <body>
+
+        <!-- Contenu de la page -->
         {% block body %}{% endblock %}
+
+        <!-- Inclusion des fichiers JavaScript -->
+        {% block javascripts %}
+        <!-- Les scripts JavaScript supplémentaires peuvent être inclus ici -->
+        {% endblock %}
     </body>
 </html>
