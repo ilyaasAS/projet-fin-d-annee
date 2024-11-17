@@ -8,4 +8,10 @@
     {{ form_row(form.password) }}
     <button type="submit">S'inscrire</button>
 {{ form_end(form) }}
+
+{% if form.vars.valid == false %}
+    <div class="error">
+        <p>Il y a des erreurs dans le formulaire.</p>
+    </div>
+{% endif %}
 {% endblock %}

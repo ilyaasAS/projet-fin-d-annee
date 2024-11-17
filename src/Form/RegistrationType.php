@@ -14,8 +14,7 @@ class RegistrationType extends AbstractType
         $builder
             ->add('username')
             ->add('email')
-            ->add('roles')
-            ->add('password')
+            ->add('password') // Suppression du champ 'roles'
         ;
     }
 
